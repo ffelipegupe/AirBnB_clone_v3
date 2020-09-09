@@ -28,5 +28,5 @@ def obj_stats():
         dict_stats[key] = storage.count(value)
     return jsonify(dict_stats)
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     pass
