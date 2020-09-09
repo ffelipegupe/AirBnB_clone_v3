@@ -27,3 +27,6 @@ def obj_stats():
     for key, value in statsDict.items():
         dict_stats[key] = storage.count(value)
     return jsonify(dict_stats)
+
+if __name__ = "__main__":
+    pass
