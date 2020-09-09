@@ -19,6 +19,7 @@ def ok_status():
     """ API status """
     return jsonify({'status': 'OK'})
 
+
 @app_views.route('/stats', strict_slashes=False)
 def obj_stats():
     """ Endpoint that retrieves the number of each objects by type """
