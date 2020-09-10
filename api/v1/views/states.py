@@ -58,12 +58,10 @@ def update_state(state_id=None):
     lo_js = storage.get("State", state_id)
     if lo_js is None:
         abort(404)
-    state = request.get_json(silent=TRUE)
-    if state is None:
-        abort(400, "Not a JSON")
-    else:
-        for key, value in state.items():
-            if key not in ['id', 'created_at', 'updated_at']:
-                setattr(lo_js, key, value)
-        storage.save()
-        return jsonify(lo_js.to_dict()), 200
+    if not request.json:
+        return jsonify({"error": "Not a JSON"}), 400
+    for key, value in request.get_json().items():
+        if key not in ['id', 'created_at', 'updated_at']:
+            setattr(lo_js, key, value)
+    lo_js.save()
+    return jsonify(lo_js.to_dict())
