@@ -61,7 +61,7 @@ def create_city(state_id):
                  methods=['PUT'], strict_slashes=False)
 def update_city(state_id):
     """ Updates a City object """
-    to_city = request.json()
+    to_city = request.get_json()
     if not to_city:
         return jsonify({'error': 'Not a JSON'}), 400
     city = storage.get('City', city_id)
