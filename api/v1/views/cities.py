@@ -23,8 +23,7 @@ def get_city_state(state_id):
                  methods=['GET'], strict_slashes=False)
 def get_city(city_id):
     """ Retrieves a City object """
-    try:
-        city = storage.get('City', city_id)
-        return jsonify(city.to_dict())
-    except Exception:
+    city = storage.get('City', city_id)
+    if city is None:
         abort(404)
+    return jsonify(city.to_json())
